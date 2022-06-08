@@ -7,8 +7,8 @@ export default function TradePark({ owner, piece }) {
         {owner.charAt(0).toUpperCase().concat(owner.slice(1))}
         {' Acquires'}
       </h2>
-      {JSON.parse(piece).map((player) => (
-        <Link href={`/players/${player.id}`}>
+      {JSON.parse(piece).map((player, index) => (
+        <Link href={`/players/${player.id}`} key={index}>
           <div>
             <a className="hover:underline hover:cursor-pointer">
               {player.name}
