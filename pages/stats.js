@@ -5,7 +5,7 @@ export default function Stats({ results }) {
     <div>
       {results.map((game) => (
         <div key={game.id}>
-          <Link href={`/player/${game.player_id}`}>
+          <Link href={`/players/${game.player_id}`}>
             <a>
               {game.player_name} {' - '} {game.fantasy_points}
             </a>

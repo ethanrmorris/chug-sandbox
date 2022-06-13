@@ -1,17 +1,56 @@
 @use 'variables' as variable;
 
-.navBar {
-  display: flex;
-  align-items: center;
+.wrapper {
   background-color: variable.$primary-color;
 }
 
 .header {
-  font-size: 24px;
-  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  position: sticky;
+  inset: 0;
+  padding: 0 1rem;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.nav {
+.mainNav {
   display: flex;
-  gap: 14px;
+  list-style: none;
+  position: relative;
+
+  &:hover {
+    color: rgb(140, 140, 140);
+  }
+
+  .navLink {
+    padding: 1rem;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.subNav {
+  display: block;
+  list-style: none;
+  position: absolute;
+  color: black;
+  top: 100%;
+  left: 1rem;
+  padding: .5rem 0;
+  
+
+  .subNavLink {
+    font-size: 14px;
+  }
+}
+
+.main {
+  max-width: 1200px;
+  margin: 1rem auto;
+  padding: 0 1rem;
 }
