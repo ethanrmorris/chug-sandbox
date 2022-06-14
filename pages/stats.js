@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import { useTable, usePagination } from 'react-table';
+import styles from '../styles/Stats.module.scss';
+import { useTable, usePagination, useSortBy, useFlexLayout } from 'react-table';
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
@@ -28,6 +29,8 @@ function Table({ columns, data }) {
       data,
       initialState: { pageIndex: 0, pageSize: 25 },
     },
+    useFlexLayout,
+    useSortBy,
     usePagination
   );
 
@@ -39,7 +42,13 @@ function Table({ columns, data }) {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render('Header')}
+                  {/* Add a sort direction indicator */}
+                  <span>
+                    {column.isSorted ? (column.isSortedDesc ? ' +' : ' -') : ''}
+                  </span>
+                </th>
               ))}
             </tr>
           ))}
@@ -59,8 +68,8 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-      {/* 
-        Pagination can be built however you'd like. 
+      {/*
+        Pagination can be built however you'd like.
         This is just a very basic UI implementation:
       */}
       <div className="pagination">
@@ -116,18 +125,35 @@ export default function Stats({ results }) {
     () => [
       {
         Header: 'Player',
-        accessor: 'player_name',
-        Cell: (e) => (
-          <>
-            <Link href={`/players/${e.row?.original?.player_id}`}>
-              <a>{e.row?.original?.player_name}</a>
-            </Link>
-          </>
-        ),
+        columns: [
+          {
+            Header: 'Name',
+            accessor: 'player_name',
+            width: 200,
+            Cell: (e) => (
+              <>
+                <Link href={`/players/${e.row?.original?.player_id}`}>
+                  <a>{e.row?.original?.player_name}</a>
+                </Link>
+              </>
+            ),
+          },
+          {
+            Header: 'Owner',
+            accessor: 'owner',
+            width: 80,
+          },
+        ],
       },
       {
         Header: 'FP',
         accessor: 'fantasy_points',
+        width: 50,
+        Cell: (e) => (
+          <>
+            <p className={styles.fp}>{e.value}</p>
+          </>
+        ),
       },
     ],
     []
