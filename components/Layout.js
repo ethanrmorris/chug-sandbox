@@ -9,48 +9,69 @@ export default function Layout({ children }) {
       <div className={styles.wrapper}>
         <header className={styles.header}>
           <Image src="/mlb.svg" width={80} height={50} alt={'Logo'} />
-          <nav>
-            <ul className={styles.mainNav}>
-              <li>
-                <Link href="/">
-                  <a className={styles.navLink}>Home</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/trades">
-                  <a className={styles.navLink}>Trades</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/stats">
-                  <a className={styles.navLink}>Stats</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/owners">
-                  <a className={styles.navLink}>Owners</a>
-                </Link>
-                <ul className={styles.subNav}>
-                  <li>
-                    <Link href="/owners/ethan">
-                      <a className={styles.subNavLink}>Ethan</a>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link href="/players">
-                  <a className={styles.navLink}>Players</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/supabase">
-                  <a className={styles.navLink}>Supabase</a>
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <div className={styles.navWrapper}>
+            <nav className={styles.nav}>
+              <ul className={styles.mainNav}>
+                <li className={styles.mainNavLink}>
+                  <Link href="/">
+                    <a>Home</a>
+                  </Link>
+                </li>
+                <li className={styles.mainNavLink}>
+                  <Link href="/trades">
+                    <a>Trades</a>
+                  </Link>
+                </li>
+                <li className={styles.mainNavLink}>
+                  <Link href="/stats">
+                    <a>Stats</a>
+                  </Link>
+                </li>
+                <li className={styles.mainNavLink}>
+                  <Link href="/owners">
+                    <a>Owners</a>
+                  </Link>
+                  {/* <div className={styles.subWrapper}> */}
+                  <ul className={styles.subNav}>
+                    <li className={styles.subNavLink}>
+                      <Link href="/owners/1">
+                        <a>Ethan</a>
+                      </Link>
+                    </li>
+                    <li className={styles.subNavLink}>
+                      <Link href="/owners/2">
+                        <a>Jacob</a>
+                      </Link>
+                    </li>
+                    <li className={styles.subNavLink}>
+                      <Link href="/owners/3">
+                        <a>Scott</a>
+                      </Link>
+                    </li>
+                    <li className={styles.subNavLink}>
+                      <Link href="/owners/4">
+                        <a>Morgan</a>
+                      </Link>
+                    </li>
+                  </ul>
+                  {/* </div> */}
+                </li>
+                <li className={styles.mainNavLink}>
+                  <Link href="/players">
+                    <a>Players</a>
+                  </Link>
+                </li>
+                <li className={styles.mainNavLink}>
+                  <Link href="/supabase">
+                    <a>Supabase</a>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div>Toggle</div>
+          </div>
         </header>
+        <div className={styles.subNavWrapper}></div>
       </div>
       <main className={styles.main}>{children}</main>
     </>
