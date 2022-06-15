@@ -15,7 +15,7 @@ export default function Player({ results }) {
         src={
           results.team
             ? `https://sleepercdn.com/images/team_logos/nfl/${results.team.toLowerCase()}.png`
-            : null
+            : `/mlb.svg`
         }
       ></img>
     </div>
